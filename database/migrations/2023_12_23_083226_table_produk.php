@@ -13,7 +13,7 @@ class TableProduk extends Migration
      */
     public function up()
     {
-        DB::statement("CREATE TABLE `produk` ( `id_produk` INT(50) NOT NULL AUTO_INCREMENT , `nama_produk` VARCHAR(50) NOT NULL , `harga` VARCHAR(50) NOT NULL , `kategori_id` INT(50) NOT NULL , `status_id` INT(50) NOT NULL , PRIMARY KEY (`id_produk`)) ENGINE = InnoDB;");
+        DB::statement("CREATE TABLE `produk` ( `id_produk` INT(50) NOT NULL AUTO_INCREMENT , `nama_produk` VARCHAR(200) NOT NULL , `harga` VARCHAR(50) NOT NULL , `kategori_id` INT(50) NOT NULL , `status_id` INT(50) NOT NULL , PRIMARY KEY (`id_produk`)) ENGINE = InnoDB;");
     }
 
     /**

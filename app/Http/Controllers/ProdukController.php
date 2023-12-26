@@ -41,6 +41,10 @@ class ProdukController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'nama_produk' => ['required'],
+            'harga' => ['required','numeric'],
+        ]);
         $item = Produk::find($id);
         $item->update($request->all());
         return response()->json($item);
