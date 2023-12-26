@@ -10,15 +10,18 @@ use DB;
 
 class ProdukController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        DB::EnableQueryLog();
+        $where = $request->status;
         $produk = Produk::with(['kategories', 'statuses'])
-        ->whereHas('statuses', function ($query) {
-            $query->where('nama_status', 'bisa dijual');
-        })->get();
+            ->whereHas('statuses', function ($query) use ($where) {
+                $query->where('nama_status', $where);
+            })
+            ->get();
+
         $status = Status::get();
         $kategori = Kategori::get();
+
 
         return response()->json(['produk' => $produk, 'status' => $status, 'kategori' => $kategori]);
     }

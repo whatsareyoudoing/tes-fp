@@ -32,7 +32,14 @@
 
     <div class="container" id="produk-list">
         <div class="row">
-            <div class="w-100 d-flex justify-content-end">
+            <div class="w-100 d-flex justify-content-between">
+                <div class="">
+                    <label for="">filter status</label>
+                    <select name="status" id="status">
+                        <option value="bisa dijual" selected>bisa dijual</option>
+                        <option value="tidak bisa dijual">tidak bisa dijual</option>
+                    </select>
+                </div>
                 <button class="btn btn-primary btn-add" data-toggle="modal" data-target="#modalAdd">add</button>
             </div>
         </div>
@@ -174,9 +181,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         function getProduk() {
+            let status = $('#status').val();
             $.ajax({
                 url: '/api/produk',
                 method: 'GET',
+                data:'status='+status,
                 success: function(response) {
                     $('tbody').html('');
                     $('#modalAdd #kategori_produk').empty();
@@ -217,6 +226,10 @@
             });
         }
 
+
+        $('#status').change(function(){
+            getProduk();
+        });
 
         //edit
             $('tbody').on('click','.btn-edit',function(){
